@@ -1,5 +1,6 @@
 const {
-    User
+    User,
+    Thought
 } = require('../models');
 
 const userController = {
@@ -54,9 +55,9 @@ const userController = {
         User.findOneAndUpdate({
                 _id: req.params.userId
             }, req.body)
-            .then((dbUserData) => {
-                res.json(dbUserData);
-            })
+            .then(
+                res.json('User successfully updated!')
+            )
             .catch((err) => {
                 console.log(err);
                 res.status(500).json(err);
@@ -68,7 +69,7 @@ const userController = {
                 _id: req.params.userId
             })
             .then(
-                console.log('User successfully deleted!')
+                res.json('User successfully deleted!')
             )
             .catch((err) => {
                 console.log(err);
@@ -104,7 +105,7 @@ const userController = {
                 }
             })
             .then(
-                console.log('Friend successfully removed!')
+                res.json('Friend successfully removed!')
             )
             .catch((err) => {
                 console.log(err);

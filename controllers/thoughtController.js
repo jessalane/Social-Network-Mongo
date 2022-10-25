@@ -54,9 +54,9 @@ const thoughtController = {
         Thought.findOneAndUpdate({
                 _id: req.params.thoughtId
             }, req.body)
-            .then((dbThoughtData) => {
-                res.json(dbThoughtData);
-            })
+            .then(
+                res.json('Thought successfully updated')
+            )
             .catch((err) => {
                 console.log(err);
                 res.status(500).json(err);
@@ -68,7 +68,7 @@ const thoughtController = {
                 _id: req.params.thoughtId
             })
             .then(
-                console.log('Thought successfully deleted!')
+                res.json('Thought successfully deleted!')
             )
             .catch((err) => {
                 console.log(err);
@@ -86,9 +86,9 @@ const thoughtController = {
             }, {
                 new: true
             })
-            .then((dbThoughtData) => {
-                res.json(dbThoughtData);
-            })
+            .then(
+                res.json('Reaction was successfully created!')
+            )
             .catch((err) => {
                 console.log(err);
                 res.status(500).json(err);
@@ -96,16 +96,25 @@ const thoughtController = {
     },
     // remove a friend from user
     removeReaction(req, res) {
-        Reaction.deleteOne({
-            _id: req.body
-        })
-        .then(
-            console.log('Reaction successfully deleted!')
-        )
-        .catch((err) => {
-            console.log(err);
-            res.status(500).json(err);
-        });
+        Thought.findOneAndUpdate({
+                _id: req.params.thoughtId
+            }, {
+                $pull: {
+                    reactions: {
+                        reactionId: req.params.reactionId
+                    }
+                }
+            },
+            {
+                runValidators: true, new: true
+            })
+            .then(
+                res.json('Reaction successfully deleted!')
+            )
+            .catch((err) => {
+                console.log(err);
+                res.status(500).json(err);
+            });
     },
 }
 
