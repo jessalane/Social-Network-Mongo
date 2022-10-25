@@ -23,7 +23,10 @@
 
   ## Usage
   The following is a video showing functionality of the program in insomnia
+starting the server:
+https://drive.google.com/file/d/1kPv6TaWF4aFt3DrsIV6JN6TYB9BF6O6I/view
 
+running the code in insomnia:
 https://drive.google.com/file/d/1w6dozYAB8nZxamhBaaSO3xOiZFCZRgt6/view
   
   ## License
